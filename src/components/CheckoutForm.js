@@ -6,7 +6,23 @@ import { useForm } from "../hooks/useForm";
 // and replace the necessary stateful logic from CheckoutForm with the hook
 
 const CheckoutForm = (props) => {
-  const [values, handleChanges, handleSubmit, showSuccessMessage] = useForm();
+  const state = {
+    firstName: "",
+    lastName: "",
+    address: "",
+    city: "",
+    state: "",
+    zip: "",
+  };
+  const [
+    values,
+    handleChanges,
+    handleSubmit,
+    showSuccessMessage,
+    disabled,
+  ] = useForm(state);
+
+  console.log("ds: ", disabled);
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -47,7 +63,7 @@ const CheckoutForm = (props) => {
           Zip:
           <input name="zip" value={values.zip} onChange={handleChanges} />
         </label>
-        <button>Checkout</button>
+        <button disabled={disabled}>Checkout</button>
       </form>
 
       {showSuccessMessage && (

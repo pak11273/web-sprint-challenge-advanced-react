@@ -179,6 +179,11 @@ input:active {
   opacity: 0.8;
 }
 
+button:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
 input:disabled {
   opacity: 0.4;
 }
