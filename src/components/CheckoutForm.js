@@ -22,7 +22,6 @@ const CheckoutForm = (props) => {
     disabled,
   ] = useForm(state);
 
-  console.log("ds: ", disabled);
   return (
     <>
       <form onSubmit={handleSubmit}>

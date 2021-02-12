@@ -1,7 +1,8 @@
 import * as yup from "yup";
 
+import { useEffect, useState } from "react";
+
 import { schema } from "../schema";
-import { useState } from "react";
 
 // write your custom hook here to control your checkout form
 export const useForm = (state) => {
@@ -14,26 +15,30 @@ export const useForm = (state) => {
   }
   const [errors, setErrors] = useState(initialErrors);
 
-  const handleChanges = (e) => {
+  useEffect(() => {
+    schema
+      .isValid(values)
+      .then((valid) => {
+        if (valid) {
+          setDisabled(false);
+          setShowSuccessMessage(true);
+        } else if (!valid) {
+          setDisabled(true);
+          setShowSuccessMessage(false);
+        }
+      })
+      .catch((e) => console.log("e: ", e));
+    console.log("val: ", values);
+  }, [values]);
+
+  const handleChanges = async (e) => {
     const { name } = e.target;
-    // yup.reach({
-    //   values,
-    //   name,
-    // });
-    // schema
-    //   .isValid(values)
-    //   .then((res) => console.log(res))
-    //   .catch((err) => console.log(err));
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
-    console.log(values);
-    console.log(errors);
     e.preventDefault();
     let valid = await schema.isValid(values);
-    console.log("valid: ", valid);
-    console.log("show: ", showSuccessMessage);
     if (valid) {
       setShowSuccessMessage(true);
     }
