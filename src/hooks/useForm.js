@@ -1,4 +1,4 @@
-import * as yup from "yup";
+// import * as yup from "yup";
 
 import { useEffect, useState } from "react";
 
@@ -13,7 +13,7 @@ export const useForm = (state) => {
   for (let prop in state) {
     initialErrors[prop] = "";
   }
-  const [errors, setErrors] = useState(initialErrors);
+  // const [errors, setErrors] = useState(initialErrors);
 
   useEffect(() => {
     schema
@@ -21,18 +21,15 @@ export const useForm = (state) => {
       .then((valid) => {
         if (valid) {
           setDisabled(false);
-          setShowSuccessMessage(true);
         } else if (!valid) {
           setDisabled(true);
-          setShowSuccessMessage(false);
         }
       })
       .catch((e) => console.log("e: ", e));
-    console.log("val: ", values);
   }, [values]);
 
   const handleChanges = async (e) => {
-    const { name } = e.target;
+    // const { name } = e.target;
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 

@@ -72,7 +72,7 @@ The form is working, but it is currently controlled by local stateful logic. We 
 #### Testing the Checkout Form
 
 - [x] Run the test runner and ensure that `src/components/CheckoutForm.test.js` is correctly called.
-- [ ] Fill out code necessary to test that that Checkout form renders without errors.
+- [x] Fill out code necessary to test that that Checkout form renders without errors.
 - [ ] Fill out code necessary to test that when all form inputs are filled with valid data, a success message appears.
 - [ ] Make sure the tests are passing, and make sure you can cause the tests to fail purposefully, so that you know the tests are truly working.
 
